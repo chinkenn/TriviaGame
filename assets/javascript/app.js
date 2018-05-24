@@ -1,3 +1,4 @@
+// declaring master variable with questions, choices, and answers
 var master = {
     question: [{number: 0, text: "What is Tom Cruise's callsign in Top Gun?"},
         {number: 1, text: "According to Forest Gump, life is like a box of what?"},
@@ -60,6 +61,7 @@ var master = {
         {number: 8, text: "E.T. the Extra-Terrestrial"},
         {number: 9, text: "Titanic"}]
 }
+// setting image array for answers
 var image = [];
 for (j = 0; j < master.question.length; j++) {
     image[j] = new Image();
@@ -74,6 +76,7 @@ image[6].src = 'assets/images/braveheart.jpg';
 image[7].src = 'assets/images/titanic.jpg';
 image[8].src = 'assets/images/et.jpg';
 image[9].src = 'assets/images/titanic.jpg';
+// declaring variables
 var correct = 0;
 var wrong = 0;
 var blank = 0;
@@ -85,14 +88,17 @@ var maxTime = 30;
 var time = 0;
 var currentTime;
 var picTime = 3;
+// function to generate new questions and choices with a timer
 function newQuestion(x) {
     $("#question").empty();
     choices.empty();
     $("#timer").text(maxTime);
+    // if statement to decide if there are still questions left
     if (count < master.question.length) {
         intervalId = setInterval(tickUp,1000);
         question = master.question[x].text;
         $("#question").text(question);
+        // to generate choices
         for (i = count*4; i < (count*4)+4; i++) {
             var choiceDisplay = $("<button>");
             choiceDisplay.attr("data-question", master.choices[i].number);
@@ -102,6 +108,7 @@ function newQuestion(x) {
             choices.append(choiceDisplay);
         }
     }
+    // stop game
     else {
         $("#message").text("GAME OVER");
         $("#correct").text("Correct: " + correct);
@@ -109,10 +116,12 @@ function newQuestion(x) {
         $("#blank").text("Unanswered: " + blank);
     }
 }
+// timer function for questions
 function tickUp() {
     time = time + 1;
     currentTime = maxTime - time;
     $("#timer").text(currentTime);
+    // if no answer
     if (currentTime === 0) {
         blank++;
         clearInterval(intervalId);
@@ -125,7 +134,9 @@ function tickUp() {
         displayPicture();
     }
 }
+// initially loading
 newQuestion(count);
+// function for when answer is clicked, decides if answer is right
 choices.on("click",".answer-choices",function() {
     var userPick = ($(this).attr("data-choices"));
     var questionNumber = ($(this).attr("data-question"));
@@ -147,15 +158,13 @@ choices.on("click",".answer-choices",function() {
         $("#blank").text("Unanswered: " + blank);
     }
     displayPicture();
-    //count++;
-    //newQuestion(count);
 })
+// function to reveal picture when answer is selected or timer runs out
 function displayPicture() {
     var picture = $("<img>");
     picture.attr("src", image[count].src);
     picture.css({"height": "16rem", "width": "36rem"});
     picture.addClass("card-img-top");
-    //picture.attr("id", "answer");
     $("#picture").append(picture).addClass("card");
     var answer = $("<p>");
     answer.addClass("card-body card-text text-center");
@@ -163,6 +172,7 @@ function displayPicture() {
     $("#picture").append(answer);
     intervalId = setInterval(picTimer,1000)
 }
+// timer for how long picture stays on the screen
 function picTimer() {
     picTime = picTime - 1;
     if (picTime === 0) {
