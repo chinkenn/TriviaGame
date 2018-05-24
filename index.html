@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Trivia Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">80's and 90's Movie Trivia!</h1>
+            <p class="lead">Answer as many questions right as you can with 30 seconds per question!</p>
+        </div>
+    </div>
+    <div class="row content">
+        <div class="col-6">
+            <div class="card bg-light mb-3 text-center" style="max-width: 36rem;">
+                <div class="card-header">Time Remaining:
+                    <span id="timer"></span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" id="question"></h5>
+                    <div class="list-group" id="choices"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div style="width: 36rem;" id="picture"></div>
+        </div>
+    </div>
+    <div class="row content">
+        <div class="col-12">
+            <div class="card bg-light mb-3 text-center" style="max-width: 72rem;">
+                <div class="card-header" id="message"></div>
+                <div class="card-body">
+                    <h5 class="card-title">Results: </h5>
+                    <div class="list-group" id="correct"></div>
+                    <div class="list-group" id="wrong"></div>
+                    <div class="list-group" id="blank"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <h1 id="correct"></h1>
+    <h1 id="wrong"></h1>
+    <h1 id="blank"></h1> -->
+
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
